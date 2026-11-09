@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Name}} - Details</title>
+</head>
+<body>
+    <a href="/">← Back to Home</a>
+    
+    <div>
+        <h1>{{.Name}}</h1>
+        <img src="{{.Image}}" alt="{{.Name}}" width="300">
+        
+        <p><strong>Creation Date:</strong> {{if .CreationDate}}{{.CreationDate}}{{else}}N/A{{end}}</p>
+        <p><strong>First Album:</strong> {{if .FirstAlbum}}{{.FirstAlbum}}{{else}}N/A{{end}}</p>
+
+        <h3>Members:</h3>
+        <ul>
+            {{range .Members}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+
+        <h3>Concert Locations & Dates:</h3>
+        <ul>
+            <!-- عرض العلاقات والتواريخ والأماكن بشكل مرتب ومترابط[cite: 5] -->
+            {{range $location, $dates := .DatesLocations}}
+            <li>
+                <strong>{{$location}}</strong>
+                <ul>
+                    {{range $dates}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </li>
+            {{end}}
+        </ul>
+    </div>
+</body>
+</html>
